@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Add Recruitment</title>
+</head>
+<body>
+<form>
+    <p>
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name">
+    </p>
+    <p>
+        <label for="role">Role:</label>
+        <input type="text" name="role" id="role">
+    </p>
+    <p>
+        <label for="experience">Experience:</label>
+        <input type="text" name="experience" id="experience">
+    </p>
+    <input type="submit" value="Submit" onclick="addtoDB()">
+</form>
+<p id="submitted"></p>
+<script>
+function addtoDB() {
+  var xhttp; 
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+        document.getElementById("submitted").innerHTML = "form submitted";
+    }
+  };
+  var name = document.getElementById('name').value;
+   var role = document.getElementById('role').value;
+   var experience = document.getElementById('experience').value;
+   var queryString = "?name=" + name + "&role=" + role + "&experience=" + experience;
+   console.log(queryString);
+   xhttp.open("GET", "AddRecruitment.php" + queryString, true);
+   xhttp.send(null); 
+}
+</script>
+</body>
+</html>
